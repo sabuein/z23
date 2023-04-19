@@ -1,3 +1,7 @@
+# Basic
+*.pem
+*.txt
+
 # Logs
 logs
 *.log
