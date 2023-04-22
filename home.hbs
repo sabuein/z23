@@ -1,4 +1,10 @@
 {{!< default}}
 <!-- home.hbs -->
 
-<p>Marhaba</p>
+<div class="post-feed">
+    {{#foreach posts}}
+    {{> "list-post"}}
+    {{/foreach}}
+</div>
+
+<div>{{pagination}}</div>
