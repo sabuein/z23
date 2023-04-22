@@ -4,9 +4,9 @@
     "version": "0.1.0",
     "license": "MIT",
     "engines": {
-        "ghost": ">=5.0.0"
+        "ghost": ">=5.44.0"
     },
-    "demo": "https://sabuein.github.io/",
+    "demo": "https://zawyeh.dev/",
     "keywords": [
         "ghost",
         "theme",
@@ -14,7 +14,7 @@
     ],
     "author": {
         "name": "Salaheddin AbuEin",
-        "email": "sabuein@gmail.com",
+        "email": "salah@zawyeh.dev",
         "url": "https://sabuein.github.io/"
     },
     "screenshots": {
