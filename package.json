@@ -38,6 +38,7 @@
         "card_assets": true
     },
     "scripts": {
+        "ghost": "ghost start --dir ../../instances/ghost-en/",
         "test": "gscan ."
     }
 }
