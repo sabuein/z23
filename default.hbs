@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html {{#match @site.locale "=" "ar"}}lang="{{@site.locale}}" dir="rtl"{{else}}lang="{{@site.locale}}"{{/match}}>
 <!-- default.hbs -->
 <head>
     <title>{{meta_title}}</title>
@@ -18,13 +18,20 @@
     <script type="module" src="{{asset "js/index.mjs"}}"></script>
     {{ghost_head}}
 </head>
-<body>
-    <header>
-        <h1>Zawyeh art gallery</h1>
+<body class="flex">
+    <progress class="reading-progress" value="0" max="100" aria-label="Reading progress"></progress>
+    <header class="flex">
+    {{#if @site.logo}}
+        <figure><a href="{{@site.url}}" title="{{@site.title}}"><img src="{{@site.logo}}" alt="{{@site.title}}" /></a></figure>
+        {{else}}
+        <h1><a href="{{@site.url}}" title="{{@site.title}}">{{@site.title}}</a></h1>
+        <h2>{{@site.description}}</h2>
+        {{/if}}
+        <nav>{{navigation}}</nav>
     </header>
     <main>{{{body}}}</main>
     <footer>
-        <p>Site footer&hellip;</p>
+        <div>Dubai</div>
     </footer>
     {{ghost_foot}}
 </body>
