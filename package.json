@@ -10,7 +10,9 @@
     "keywords": [
         "ghost",
         "theme",
-        "ghost-theme"
+        "ghost-theme",
+        "responsive",
+        "mobile-friendly"
     ],
     "author": {
         "name": "Salaheddin AbuEin",
@@ -38,7 +40,8 @@
         "card_assets": true
     },
     "scripts": {
-        "ghost": "ghost start --dir ../../instances/ghost-en/",
+        "start": "ghost start --dir ../../instances/ghost-en/",
+        "restart": "ghost restart --dir ../../instances/ghost-en/",
         "test": "gscan ."
     }
 }
