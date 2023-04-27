@@ -1,9 +1,9 @@
 {{!< default}}
 <!-- home.hbs -->
 {{#is "home"}}
-<header class="paintings-{{post_class}}">
-    <h2>{{title}}</h2>
-    <h3>Four types of painting&colon;</h3>
+<header class="paintings-{{post_class}}" tabindex="0">
+    <h2 role="heading" aria-level="2">Homepage</h2>
+    <h3 role="heading" aria-level="3">Four types of painting&colon;</h3>
     <p>Paintings&nbsp;can&nbsp;be&nbsp;classified&nbsp;into&nbsp;four&nbsp;categories&comma;&nbsp;which&nbsp;are&nbsp;portrait&comma;&nbsp;history&comma;&nbsp;genre&comma;&nbsp;and&nbsp;landscape&nbsp;painting&period;</p>
 </header>
 <section class="categories-{{post_class}} flex row nowrap">
