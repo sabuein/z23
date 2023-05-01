@@ -20,8 +20,7 @@
 </head>
 <body class="flex">
     <div class="skipnav"><a href="#maincontent">Skip to main content&hellip;</a>&nbsp;<a href="#sitemap">Skip to footer site map</a></div>
-    <progress class="reading-progress" value="0" max="100" aria-label="Reading progress"></progress>
-    <header class="flex row space-between" role="banner">
+    <header class="flex row space-between gap-x2" role="banner">
         {{#if @site.logo}}
         <figure>
             <a href="{{@site.url}}" title="{{@site.title}}"><img src="{{@site.logo}}" alt="{{@site.title}}" /></a>
@@ -36,8 +35,8 @@
     </header>
     <main class="flex" role="main" id="maincontent">{{{body}}}</main>
     <footer class="flex row space-between" tabindex="0">
-        <section class="flex row start console">{{> "our-locations"}}</section>
-        <section class="flex row end console">{{> "our-social-media"}}</section>
+        <section class="flex row start start-items gap-x3">{{> "our-locations"}}</section>
+        <section class="flex row end">{{> "our-social-media"}}</section>
     </footer>
     {{ghost_foot}}
 </body>

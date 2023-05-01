@@ -2,5 +2,11 @@
 <!-- post.hbs -->
 
 {{#post}}
-<p>Hi</p>
+<progress id="reading-progress" value="65" max="100" aria-label="Reading progress"></progress>
+<article class="{{post_class}}">
+    <header>
+        <h2>{{title}}</h2>
+    </header>
+    <div>{{content}}</div>
+</article>
 {{/post}}

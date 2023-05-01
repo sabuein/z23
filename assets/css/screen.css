@@ -23,6 +23,7 @@
     --black: #0b0c0c;
     --white: #ffffff;
     --default-max-width: 1920px;
+    --default-max-width: 1660px;
     --default-font-size: 19px;
 }
 
@@ -51,7 +52,7 @@ head {
 body {
     display: block;
     margin: 0 auto;
-    padding: 3rem;
+    padding: 0 5rem;
     height: auto;
     width: var(--default-max-width);
     max-width: 100%;
@@ -63,17 +64,8 @@ body {
     word-wrap: break-word;
     font-size: var(--default-font-size);
     opacity: 1;
-}
-
-body > header,
-main,
-section,
-article,
-footer {
-    margin: 1rem;
-    width: 100%;
-    text-transform: uppercase;
     letter-spacing: .16rem;
+    text-transform: uppercase;
 }
 
 body > header {
@@ -81,16 +73,24 @@ body > header {
 }
 
 main {
+    margin: 4rem 0;
+    width: 100%;
     clear: both;
     zoom: 1;
 }
 
+footer {
+    margin: 2rem 0 4rem;
+    width: 100%;
+}
+
 .skipnav {
     text-align: start;
+    margin: 1.5rem 0 2rem;
 }
 
 a:link {
-    padding: .25rem 1rem;
+    padding: .25rem 0;
     color: var(--blue);
     text-decoration: none;
     line-height: 1.25;
@@ -223,6 +223,16 @@ figure {
     text-align: center;
 }
 
+figure.item-figure {
+    width: 345px;
+    height: 345px;
+}
+
+figure.item-figure img {
+    width: 100%;
+    height: 100%;
+}
+
 input,
 button,
 textarea,
@@ -286,6 +296,10 @@ p {
     gap: 2rem;
 }
 
+.gap-x2-5 {
+    gap: 2.5rem;
+}
+
 .gap-x3 {
     gap: 3rem;
 }
@@ -314,76 +328,77 @@ p {
     justify-content: space-between;
 }
 
-.console {
-    outline: 5px dashed red;
-    width: 500px;
-    height: 300px;
-}
-
 /* Theme classes */
 
-.category-content {
+progress#reading-progress {
+    display: block;
+    position: fixed;
+    inset: 0;
     width: 100%;
 }
 
-.category-content > * {
-    flex-basis: 22%;
+footer article {
+    width: 100%;
 }
 
-.category-title {
-    border-bottom: thick solid var(--blue);
+footer div {
+    width: max-content;
 }
 
-.list-artists-names > article {
-    width: unset;
+article:is(.category-content, .list-artists-names) {
+    margin: 2rem 0;
 }
 
-/* TO-DO: Magic */
-
-.some-magic {
-    opacity: 1;
-    transform: none;
-    transition: transform .8s cubic-bezier(.45,0,.27,1), opacity .4s ease-in-out;
+article:is(.category-content, .list-artists-names) > div {
+    width: 100%;
 }
 
-.more-magic {
-    opacity: 1;
-    transform: none;
-    transition: transform 4s cubic-bezier(.18,1,.21,1), opacity 2.5s cubic-bezier(.18,1,.21,1);
-}
-
-.magic-item {
-    opacity: 0;
+.category-item {
     scale: 1;
+    opacity: 1;
+    transform: none;
+    transition: opacity .4s ease-in-out, transform .8s cubic-bezier(.45,0,.27,1);
+    transition: opacity 2.5s cubic-bezier(.18,1,.21,1), transform 4s cubic-bezier(.18,1,.21,1);
+}
+
+.list-artists-names .category-item {
+    flex-basis: 23%;
+}
+
+.category-content .category-item {
+    margin: 0 0 2rem;
+    flex-basis: 345px;
+}
+
+.paintings-post,
+.category-title {
+    margin: 0 0 2.75rem;
+}
+
+.paintings-post h2 {
+    margin: 0 0 .5rem;
+}
+
+.category-title::after {
+    content: "";
+    border-top: thin solid var(--blue);
+    flex-grow: 1;
+    display: block;
+}
+
+.category-content .item-title {
+    margin: .85rem 0 0;
+}
+
+/* Magic */
+
+.magic {
+    opacity: 0;
     transform: translateY(120px);
     transition: none;
 }
 
-.border-magic {
-    transition: border .2s linear;
-    -webkit-transition-property: border;
-    transition-property: border;
-    -webkit-transition-duration: .2s;
-    transition-duration: .2s;
-}
-
 /* laptops and mobile devices */
-
-@media screen and (max-width: 720px) {
-    :root {
-        --default-max-width: 650px;
-    }
-
-    .row {
-        flex-direction: column;
-    }
-}
-
-@media screen and (max-width: 1280px) {
-    :root {
-        --default-max-width: 1080px;
-    }
-}
 
 @media screen and (max-width: 1580px) {
     :root {
@@ -391,22 +406,64 @@ p {
     }
 }
 
-/* big screens 1920px or more */
+@media screen and (max-width: 1280px) {
+    :root {
+        --default-max-width: 1080px;
+    }
 
+    body {
+        padding: 0 3rem;
+    }
+
+    .category-content .category-item {
+        flex-basis: 300px;
+    }
+
+    figure.item-figure {
+        width: 300px;
+    }
+}
+
+
+@media screen and (max-width: 720px) {
+    :root {
+        --default-max-width: 650px;
+    }
+
+    body {
+        padding: 0 1.5rem;
+    }
+
+    .row {
+        flex-direction: column;
+    }
+
+    .category-content .category-item {
+        flex-basis: unset;
+        width: 100%;
+    }
+
+    figure.item-figure {
+        width: 100%;
+    }
+}
+
+/* big screens 1920px or more */
+/*
 @media screen and (max-width: 2220px) {
     :root {
         --default-max-width: 1920px;
     }
 }
-
+*/
 /* Up to 3000px for ultra-large monitors */
-
+/*
 @media screen and (max-width: 3300px) {
     :root {
         --default-max-width: 3000px;
     }
 }
-
+*/
 /* TO-DO: more media */
 
 @media (scripting: none) { /* No JavaScript */ }
