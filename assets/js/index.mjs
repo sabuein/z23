@@ -1,8 +1,9 @@
-import { doFakePages, getNetworkInfo } from "nav";
+import { doFakePages, getNetworkInfo, goTop } from "nav";
 
 document.addEventListener("DOMContentLoaded", (event) => {
     doFakePages();
     getNetworkInfo();
+    goTop();
 });
 
 
