@@ -23,7 +23,7 @@
     <header class="site-header flex row space-between gap-x2" role="banner">
         {{#if @site.logo}}
         <figure>
-            <a href="{{@site.url}}" title="{{@site.title}}">
+            <a href="{{@site.url}}" title="{{@site.title}}" tabindex="-1">
                 <img src="{{@site.logo}}" alt="{{@site.title}}" />
             </a>
         </figure>
@@ -40,7 +40,10 @@
     <footer class="flex row space-between wrap gap-x3" tabindex="0">
         <section class="flex row start start-items gap-x3">{{> "our-locations"}}</section>
         <section class="flex row end">{{> "our-social-media"}}</section>
-        <section><pre>Copyright &copy; 2023 <a href="{{@site.url}}" title="{{@site.title}}">{{@site.title}}</a></pre></section>
+        <section>
+            <pre>&copy; Copyright 2023&period; All rights reserved&period;</pre>
+            <pre>Brought to you with &hearts; by <a href="{{@site.url}}" title="{{@site.title}}">{{@site.title}}</a>&period;</pre>
+        </section>
     </footer>
     {{ghost_foot}}
 </body>
