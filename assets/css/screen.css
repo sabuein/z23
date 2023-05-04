@@ -76,6 +76,10 @@ header.site-header {
     border-bottom: thin solid var(--darkgray);
 }
 
+/* header.site-header figure a {
+    pointer-events: none;
+} */
+
 header.site-header img {
     width: 198px;
 }
@@ -102,6 +106,7 @@ footer {
 
 footer pre {
     font-size: .85rem;
+    white-space: pre-line;
 }
 
 pre a:visited, pre a:link {
@@ -138,6 +143,11 @@ a:visited {
 
 :is(nav, .item-title) a:is(:link, :visited) {
     color: var(--darkgray);
+    white-space: nowrap;
+}
+
+:is(.item-title) a:is(:link, :visited) {
+    white-space: pre-line;
 }
 
 a:hover {
@@ -184,6 +194,10 @@ input[type="button"] {
     color: var(--darkgray);
     background-color: var(--gray);
     border: thin solid var(--darkgray);
+}
+
+.footer-post input:is([type="text"], [type="email"]) {
+    width: 33ch;
 }
 
 select,
@@ -316,13 +330,13 @@ figure.item-figure {
     height: 345px;
 }
 
-figure.item-figure:hover {
+/*figure.item-figure:hover {
     scale: 1.2;
 }
 
 figure.item-figure:hover::after {
     content: attr(title);
-}
+}*/
 
 figure.item-figure img {
     width: 100%;
@@ -449,10 +463,27 @@ footer div {
     width: max-content;
 }
 
+.social-icon a {
+    margin-bottom: 1rem;
+}
+
 .social-icon svg {
     width: 48px;
     height: 48px;
     filter: grayscale(100%);
+}
+
+.social-icon:hover svg {
+    filter: none;
+}
+
+.social-icon a:focus svg {
+    filter: none;
+    border: thin solid var(--black);
+    background-color: var(--yellow);
+    outline: thin solid var(--black);
+    /* border: thin solid var(--black); */
+    border-bottom: thick solid var(--black);
 }
 
 article:is(.category-content, .list-artists-names) {
@@ -518,6 +549,12 @@ article.post {
 
 /* laptops and mobile devices */
 
+@media screen and (max-width: 1660px) {
+    article:is(.category-content, .list-artists-names) > div {
+        justify-content: center;
+    }
+}
+
 @media screen and (max-width: 1580px) {
     :root {
         --default-max-width: 1280px;
@@ -539,6 +576,7 @@ article.post {
 
     figure.item-figure {
         width: 300px;
+        height: 300px;
     }
 }
 
