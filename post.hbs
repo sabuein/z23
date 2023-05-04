@@ -1,6 +1,5 @@
 {{!< default}}
 <!-- post.hbs -->
-
 {{#post}}
 <progress id="reading-progress" value="65" max="100" aria-label="Reading progress"></progress>
 <article class="{{post_class}}">
@@ -9,4 +8,5 @@
     </header>
     <div>{{content}}</div>
 </article>
+<aside class="flex">{{> "sharing"}}</aside>
 {{/post}}

@@ -1,0 +1,39 @@
+<!-- sharing.hbs -->
+{{#if names-only}}
+{{#get "posts" include="tags,authors" filter="primary_tag:{{section}}" limit="all" as |post|}}
+<article class="list-artists-names flex">
+    <div class="flex row wrap start start-items gap-x2">
+        {{#foreach post}}
+        <article class="category-item magic" aria-label="{{title}}" title="{{title}}" tabindex="0">
+            <header class="item-title">
+                <h4 role="heading" aria-level="4"><a href="{{url}}" title="{{title}}" target="_self">{{title}}</a></h4>
+            </header>
+        </article>
+        {{/foreach}}
+    </div>
+</article>
+{{/get}}
+{{else}}
+<article class="sharing flex row nowrap gap-x3">
+    <header tabindex="0">
+        <h3 title="Share" role="heading" aria-level="3">Share</h3>
+    </header>
+    <div class="flex row nowrap gap-half">
+        <figure class="flex">
+            <figcaption><a href="{{url absolute='true'}}" title="{{title}}" data-tags='{{tags}}'>Facebook</a></figcaption>
+        </figure>
+        <figure>
+            <figcaption><a href="{{url absolute='true'}}" title="{{title}}" data-tags='{{tags}}'>Twitter</a></figcaption>
+        </figure>
+        <figure>
+            <figcaption><a href="{{url absolute='true'}}" title="{{title}}" data-tags='{{tags}}'>LinkedIn</a></figcaption>
+        </figure>
+        <figure>
+            <figcaption><a href="{{url absolute='true'}}" title="{{title}}" data-tags='{{tags}}'>WhatsApp</a></figcaption>
+        </figure>
+        <figure>
+            <figcaption><a href="{{url absolute='true'}}" title="{{title}}" data-tags='{{tags}}'>Email</a></figcaption>
+        </figure>
+    </div>
+</article>
+{{/if}}

@@ -109,6 +109,10 @@ footer pre {
     white-space: pre-line;
 }
 
+footer pre:first-of-type {
+    margin-bottom: 1rem;
+}
+
 pre a:visited, pre a:link {
     color: var(--black);
     text-decoration: underline;
@@ -406,6 +410,10 @@ p {
     flex-wrap: wrap;
 }
 
+.gap-half {
+    gap: .5rem;
+}
+
 .gap-x1 {
     gap: 1rem;
 }
@@ -545,6 +553,17 @@ article.post {
     opacity: 0;
     transform: translateY(120px);
     transition: none;
+}
+
+.sharing header {
+    width: initial;
+}
+
+.sharing a:visited,
+.sharing a:link {
+    padding: 0;
+    vertical-align: -webkit-baseline-middle;
+    vertical-align: middle;
 }
 
 /* laptops and mobile devices */
