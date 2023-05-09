@@ -1,2 +1,15 @@
 {{!< default}}
 <!-- page.hbs -->
+{{#post}}
+<article class="{{post_class}}">
+    <header>
+        <h2>{{title}}</h2>
+    </header>
+    <figure>
+        <img src="{{feature_image}}" />
+        <figcaption>{{caption}}Lorem ipsum dolor sit amet, consectetur adipisicing elit&period;</figcaption>
+    </figure>
+    <div class="flex start-items gap-x1">{{content}}</div>
+</article>
+<aside class="flex">{{> "sharing"}}</aside>
+{{/post}}
