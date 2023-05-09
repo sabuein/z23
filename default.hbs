@@ -37,14 +37,7 @@
         <p class="flex" style="padding: 2rem; width: 100%;">This web application requires JavaScript</p>
     </noscript>
     <main class="flex" role="main" id="maincontent">{{{body}}}</main>
-    <footer class="flex row space-between wrap gap-x3" tabindex="0">
-        <section class="flex row start start-items gap-x3">{{> "our-locations"}}</section>
-        <section class="flex row end">{{> "our-social-media"}}</section>
-        <section>
-            <pre>&copy; Copyright 2023&period; All rights reserved&period;</pre>
-            <pre>Brought to you with &hearts; by <a href="{{@site.url}}" title="{{@site.title}}">{{@site.title}}</a>&period;</pre>
-        </section>
-    </footer>
+    {{> "footer"}}
     {{ghost_foot}}
 </body>
 </html>
