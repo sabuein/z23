@@ -46,6 +46,7 @@ html {
     -webkit-locale: "en";
     direction: ltr;
     display: block;
+    scroll-behavior: smooth;
 }
 
 head {
@@ -69,6 +70,7 @@ body {
     opacity: 1;
     letter-spacing: .16rem;
     text-transform: uppercase;
+    background: linear-gradient(25deg, #ffffff 0%, #f7f7f7 51%, #fbfbfb 85%, #ffffff 100%);
 }
 
 header.site-header {
@@ -82,6 +84,7 @@ header.site-header {
 
 header.site-header img {
     width: 198px;
+    mix-blend-mode: multiply;
 }
 
 main {
@@ -124,8 +127,12 @@ pre span.red {
     font-size: x-large;
 }
 
+pre span.red:hover {
+    cursor: progress;
+}
+
 body > footer {
-    margin: 1rem 0 10rem;
+    margin: 1rem 0 12rem;
 }
 
 body > footer > section:last-child {
@@ -174,6 +181,7 @@ a:focus {
 
 a:active {
     color: var(--blue);
+    cursor: wait;
 }
 
 button,
@@ -183,6 +191,10 @@ input[type="button"] {
     background-color: var(--green);
 }
 
+.footer-post div:has(form) {
+    width: 100%;
+}
+
 .footer-post form {
     margin: 2rem 0;
     padding: 2rem 0;
@@ -190,7 +202,7 @@ input[type="button"] {
     border-left: none;
     border-right: none;
     width: 100%;
-    background-color: #e5e5e5;
+    /*background-color: #e5e5e5;*/
 }
 
 .footer-post legend {
@@ -241,7 +253,17 @@ input[type="email"]):is(:active, :focus) {
     outline: thin solid var(--black);
 }
 
+:is(button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="text"],
+input[type="email"]):active {
+    cursor: wait;
+}
+
 button#goTopBtn {
+    opacity: 0;
     display: none;
     position: fixed;
     bottom: 100px;
@@ -258,7 +280,7 @@ button#goTopBtn {
     height: 5rem;
     width: 5rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 16px -2px;
-    transition: background-color 0.3s ease;
+    transition: opacity 1s .25s ease;
 }
 
 button#goTopBtn:hover {
@@ -297,6 +319,7 @@ input:disabled {
 header {
     margin: 0;
     width: 100%;
+    max-width: 100%;
 }
 
 ol, ul {
@@ -355,18 +378,16 @@ figure {
     text-align: center;
 }
 
-figure.item-figure {
+article.category-content figure.item-figure {
     width: 345px;
     height: 345px;
 }
 
-/*figure.item-figure:hover {
-    scale: 1.2;
+article.list-artists-secondary figure.item-figure {
+    width: 150px;
+    height: 150px;
+    max-width: 100%;
 }
-
-figure.item-figure:hover::after {
-    content: attr(title);
-}*/
 
 figure.item-figure img {
     width: 100%;
@@ -444,6 +465,10 @@ p {
     gap: 1rem;
 }
 
+.gap-x1-5 {
+    gap: 1rem;
+}
+
 .gap-x2 {
     gap: 2rem;
 }
@@ -494,7 +519,7 @@ footer article {
 }
 
 footer div {
-    width: max-content;
+    width: 100%;
 }
 
 .social-icon a {
@@ -520,11 +545,16 @@ footer div {
     border-bottom: thick solid var(--black);
 }
 
-article:is(.category-content, .list-artists-names) {
-    margin: 2rem 0;
+.social-icon:last-of-type a svg:is(:hover, :active, :focus) path {
+    fill: var(--black)
 }
 
-article:is(.category-content, .list-artists-names) > div {
+article:is(.category-content, .list-artists-secondary) {
+    margin: 2rem 0;
+    width: 100%;
+}
+
+article:is(.category-content, .list-artists-secondary) > div {
     width: 100%;
 }
 
@@ -555,12 +585,13 @@ article.post figure img {
 article.post figcaption {
     padding: 0.5rem 0;
     font-style: italic;
+    font-size: smaller;
 }
 
 article.post p {
     text-align: justify;
     font-weight: 400;
-    font-family: "Open Sans";
+    /*font-family: "Open Sans";*/
     line-height: 2.25;
 }
 
@@ -568,16 +599,27 @@ article.post p {
     width: 100%;
 }
 
-.category-item {
-    scale: 1;
+.category-item.magic {
     opacity: 1;
     transform: none;
-    transition: opacity .4s ease-in-out, transform .8s cubic-bezier(.45,0,.27,1);
-    transition: opacity 2.5s cubic-bezier(.18,1,.21,1), transform 4s cubic-bezier(.18,1,.21,1);
+    transition: opacity .8s ease-in-out, transform .6s cubic-bezier(.45,0,.27,1);
 }
 
-.list-artists-names .category-item {
-    flex-basis: 23%;
+.category-item {
+    width: 100%;
+    scale: 1;
+    opacity: 0;
+    transform: translateY(120px);
+    transition: opacity 1.5s cubic-bezier(.18,1,.21,1), transform 4s cubic-bezier(.18,1,.21,1);
+}
+
+.list-artists-secondary .category-item {
+    flex-basis: 10%;
+    flex: 0 10 150px;
+}
+
+.list-artists-secondary .item-title {
+    width: 150px;
 }
 
 .category-content .category-item {
@@ -585,9 +627,22 @@ article.post p {
     flex-basis: 345px;
 }
 
+.category-content .item-title {
+    width: 345px;
+}
+
 .paintings-post,
 .category-title {
     margin: 0 0 2.75rem;
+}
+
+.item-title h4 {
+    padding: .25rem;
+}
+
+.item-title a:is(:link, :visited) {
+    word-break: keep-all;
+    white-space: pre-line;
 }
 
 .paintings-post h2 {
@@ -605,12 +660,8 @@ article.post p {
     margin: .85rem 0 0;
 }
 
-/* Magic */
-
-.magic {
-    opacity: 0;
-    transform: translateY(120px);
-    transition: none;
+fieldset.flex.row > div {
+    width: initial;
 }
 
 .sharing header {
@@ -627,7 +678,7 @@ article.post p {
 /* laptops and mobile devices */
 
 @media screen and (max-width: 1660px) {
-    article:is(.category-content, .list-artists-names) > div {
+    article:is(.category-content, .list-artists-secondary) > div {
         justify-content: center;
     }
 }
@@ -641,6 +692,7 @@ article.post p {
 @media screen and (max-width: 1280px) {
     :root {
         --default-max-width: 1080px;
+        --default-font-size: 16px;
     }
 
     body {
@@ -649,6 +701,23 @@ article.post p {
 
     .category-content .category-item {
         flex-basis: 300px;
+    }
+
+    .category-content .item-title {
+        width: 300px;
+    }
+
+    ul.flex.row,
+    fieldset.flex.row {
+        flex-direction: column;
+    }
+
+    ul.flex.row {
+        display: none;
+    }
+
+    .footer-post input:is([type="text"], [type="email"]) {
+        width: 100%;
     }
 
     figure.item-figure {
@@ -667,8 +736,40 @@ article.post p {
         padding: 0 1.5rem;
     }
 
+    header.site-header {
+        padding-top: .5rem;
+    }
+
+    .skipnav {
+        margin: .5rem 0 .25rem;
+    }
+
     .row {
         flex-direction: column;
+    }
+
+    article:is(.category-content, .list-artists-secondary) > div {
+        gap: 1rem;
+    }
+
+    article.post {
+        max-width: 95%;
+    }
+
+    article.post figure {
+        margin: 0;
+    }
+
+    article.post figcaption {
+        padding: 0;
+    }
+
+    article.post > div {
+        padding: 1rem 0;
+    }
+
+    article.post p {
+        text-align: start;
     }
 
     .category-content .category-item {
@@ -678,6 +779,14 @@ article.post p {
 
     figure.item-figure {
         width: 100%;
+    }
+
+    article.category-content figure.item-figure {
+        width: 100%;
+    }
+
+    article.sharing {
+        gap: 1rem;
     }
 }
 
