@@ -63,24 +63,47 @@ const goTop = () => {
     window.onscroll = function() {scrollFunction()};
 
     function scrollFunction() {
-        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
             mybutton.style.display = "block";
+            setTimeout(() => {
+                mybutton.style.opacity = "1";
+                mybutton.style.transition = "opacity 1s .1s ease";
+            }, 100);
+            
         } else {
-            mybutton.style.display = "none";
+            mybutton.style.opacity = "0";
+            mybutton.style.transition = "opacity 1s .25s ease";
+            setTimeout(() => {
+                mybutton.style.display = "none";
+            }, 100);
         }
     }
     
     // When the user clicks on the button, scroll to the top of the document
     function topFunction() {
-        document.body.scrollTop = 50; // For Safari
-        document.documentElement.scrollTop = 50; // For Chrome, Firefox, IE and Opera
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
 
     mybutton.onclick = topFunction;
 }
 
+
+const reveal = (querySelector) => {
+    const elements = document.querySelectorAll(querySelector);
+    elements.forEach((element, index) => {
+        const winHeight = window.innerHeight,
+            elementTop = element.getBoundingClientRect().top,
+            breakpoint = 140;
+
+        let equation = elementTop < winHeight - breakpoint;
+        (equation) ? element.classList.add("magic") : element.classList.remove("magic");
+    });
+};
+
 export {
     doFakePages,
     getNetworkInfo,
-    goTop
+    goTop,
+    reveal
 };
