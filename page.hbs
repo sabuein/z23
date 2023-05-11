@@ -10,6 +10,10 @@
         <figcaption>{{caption}}Lorem ipsum dolor sit amet, consectetur adipisicing elit&period;</figcaption>
     </figure>
     <div class="flex start-items gap-x1">{{content}}</div>
+    <footer class="footer-{{post_class}} flex">
+        <aside class="flex">{{> "sharing"}}</aside>
+        <div>{{> "subscribe"}}</div>
+        <button id="goTopBtn">Scroll Up</button>
+    </footer>
 </article>
-<aside class="flex">{{> "sharing"}}</aside>
 {{/post}}

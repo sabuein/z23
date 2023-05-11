@@ -8,11 +8,11 @@
     {{> "list-artists" heading="Gallery artists" section="artist"}}
 </section>
 <section class="categories-{{post_class}} flex">
-    {{> "list-artists" heading="Artists exhibited" section="artist" names-only=true}}
+    {{> "list-artists" heading="Artists exhibited" section="artist" secondary=true}}
 </section>
 <footer class="footer-{{post_class}} flex">
     <aside class="flex">{{> "sharing"}}</aside>
-    {{> "subscribe"}}
+    <div>{{> "subscribe"}}</div>
     <button id="goTopBtn">Scroll Up</button>
 </footer>
 {{#contentFor "head_scripts"}}{{/contentFor}}
