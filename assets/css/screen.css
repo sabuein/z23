@@ -102,6 +102,30 @@ li.nav-current a {
     margin-bottom: 2rem;
 }
 
+header button#menuToggle:is(:enabled, :active) {
+    display: none;
+    color: var(--black);
+    background: transparent;
+    border: 0;
+    outline: none;
+    font-size: 3rem;
+    clip: auto;
+	height: auto;
+    overflow: visible;
+	position: static;
+	white-space: normal;
+	width: auto;
+}
+
+/*ul[role="menu"]:has(+ button#menuToggle:focus, + button#menuToggle:active) {
+    display: block;
+}*/
+
+ul[role="menu"].toggled {
+    display: flex;
+    flex-basis: 865px;
+}
+
 footer {
     margin: 2rem 0 3rem;
     width: 100%;
@@ -212,7 +236,9 @@ input[type="button"] {
     text-align: center;
 }
 
-.footer-post input {
+.footer-post input,
+.footer-post input:autofill,
+.footer-post input:-webkit-autofill {
     padding: 1rem;
     font-size: 1.25rem;
     color: var(--black);
@@ -707,13 +733,22 @@ fieldset.flex.row > div {
         width: 300px;
     }
 
-    ul.flex.row,
+    ul[role="menu"] {
+        display: none;
+    }
+
+    ul[role="menu"].toggled {
+        flex-basis: unset;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
     fieldset.flex.row {
         flex-direction: column;
     }
 
-    ul.flex.row {
-        display: none;
+    header button#menuToggle:is(:enabled, :active) {
+        display: initial;
     }
 
     .footer-post input:is([type="text"], [type="email"]) {
@@ -737,6 +772,7 @@ fieldset.flex.row > div {
     }
 
     header.site-header {
+        flex-direction: row;
         padding-top: .5rem;
     }
 
