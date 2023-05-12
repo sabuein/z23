@@ -1,10 +1,10 @@
-import { doFakePages, getNetworkInfo, goTop, reveal } from "nav";
+import { doFakePages, getNetworkInfo, goTop, reveal, toggled } from "nav";
 
 document.addEventListener("DOMContentLoaded", (event) => {
     doFakePages();
     getNetworkInfo();
     goTop();
-    
+    toggled("button#menuToggle", 'ul[role="menu"]');
     window.addEventListener("scroll", () => reveal(".category-item"));
 });
 

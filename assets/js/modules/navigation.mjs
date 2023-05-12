@@ -101,9 +101,17 @@ const reveal = (querySelector) => {
     });
 };
 
+const toggled = (trigger, target) => {
+    const button = document.querySelector(trigger), menu = document.querySelector(target);
+    button.addEventListener("click", () => {
+        menu.classList.toggle("toggled");
+    });
+};
+
 export {
     doFakePages,
     getNetworkInfo,
     goTop,
-    reveal
+    reveal,
+    toggled
 };
