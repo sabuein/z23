@@ -2,7 +2,7 @@
 <html {{#match @site.locale "=" "ar"}}lang="{{@site.locale}}" dir="rtl"{{else}}lang="{{@site.locale}}"{{/match}}>
 <!-- default.hbs -->
 <head>
-    <title>{{meta_title}}</title>
+    <title>{{#if pages}}{{meta_title page=(t "Page %")}}{{else}}{{meta_title}}{{/if}}</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="HandheldFriendly" content="True" />
@@ -23,22 +23,41 @@
     <header class="site-header flex row space-between gap-x2" role="banner">
         {{#if @site.logo}}
         <figure>
-            <a href="{{@site.url}}" title="{{@site.title}}" tabindex="-1">
-                <img src="{{@site.logo}}" alt="{{@site.title}}" />
-            </a>
+            {{#link href=@site.url title="{{@site.title}} &dash; {{@site.description}}" tabindex="-1"}}<img src="{{@site.logo}}" alt="{{@site.title}}" />{{/link}}
         </figure>
         {{else}}
         <h1 role="heading" aria-level="1"><a href="{{@site.url}}" title="{{@site.title}}">{{@site.title}}</a></h1>
         <h2>{{@site.description}}</h2>
         {{/if}}
         <nav class="flex row">{{navigation}}</nav>
-        <button type="button" id="menuToggle">&#x2630;</button>
+        <div class="flex row gap-x1">
+            <button type="button" id="menuToggle">&#x2630;</button>
+            <button type="button" data-ghost-search>&#x1f50e;</button>
+        </div>
     </header>
     <noscript>
         <p class="flex" style="padding: 2rem; width: 100%;">This web application requires JavaScript</p>
     </noscript>
     <main class="flex" role="main" id="maincontent">{{{body}}}</main>
     {{> "footer"}}
+    {{#is "post"}}{{/is}}
+    <script type="text/javascript" language="JavaScript">
+        //<!-- <![CDATA[
+        const progressBar = document.querySelector(".reading-bar");
+        
+        function updateProgress() {
+            const totalHeight = document.body.clientHeight;
+            const windowHeight = document.documentElement.clientHeight;
+            const position = window.scrollY;
+            const progress = position / (totalHeight - windowHeight) * 100;
+            progressBar.setAttribute("value", progress);
+            requestAnimationFrame(updateProgress);
+        }
+        
+        requestAnimationFrame(updateProgress);
+        //]]> -->
+    </script>
+    
     {{ghost_foot}}
 </body>
 </html>
