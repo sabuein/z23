@@ -2,6 +2,7 @@
 *.pem
 *.txt
 assets/backups/
+assets/images/
 
 # Logs
 logs
