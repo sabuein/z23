@@ -93,9 +93,10 @@ header.site-header img {
 
 main {
     margin: 4rem 0;
-    width: 100%;
+    width: 94%;
     clear: both;
     zoom: 1;
+    overflow: hidden;
 }
 
 li.nav-current {
@@ -108,19 +109,24 @@ li.nav-current a {
 
 header button#menuToggle:is(:enabled, :active) {
     display: none;
+    margin: 0;
+    position: fixed;
+    right: 2rem;
     color: var(--black);
     background: transparent;
-    border: 0;
     outline: none;
-    font-size: 3rem;
+    font-size: 2rem;
     clip: auto;
-	height: auto;
     overflow: visible;
-	position: static;
 	white-space: normal;
-	width: auto;
     z-index: 99999999;
     rotate: none;
+    transition: rotate 200ms 10ms ease;
+    writing-mode: vertical-rl;
+    border: 0;
+    border-radius: 3rem;
+    width: 4rem;
+    height: 4rem;
 }
 
 header button[data-ghost-search]:is(:enabled, :active) {
@@ -130,12 +136,10 @@ header button[data-ghost-search]:is(:enabled, :active) {
     font-size: 2rem;
 }
 
-/*ul[role="menu"]:has(+ button#menuToggle:focus, + button#menuToggle:active) {
-    display: block;
-}*/
-
 ul[role="menu"].toggled {
     display: flex;
+    position: static;
+    opacity: 1;
     flex-basis: 865px;
 }
 
@@ -150,13 +154,20 @@ footer pre {
     text-transform: initial;
 }
 
-footer pre:first-of-type {
+footer pre:not(:last-of-type) {
     margin-bottom: 1rem;
 }
 
 pre a:visited, pre a:link {
     color: var(--black);
     text-decoration: underline;
+}
+
+p > a:is(:link, :visited)::before {
+    content: "\1f517";
+    text-decoration: none;
+    font-size: .5rem;
+    margin-inline-start: .25rem;
 }
 
 pre span.red {
@@ -675,8 +686,74 @@ article.post p {
 }
 
 .categories-post {
+    margin: 2rem 0;
+    width: 100%;
+    
+}
+
+.categories-post.with-x-overflow {
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+
+.categories-post::-webkit-scrollbar {
+    height: 2rem;
     width: 100%;
 }
+
+.categories-post::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    background-color: #888;
+}
+
+.categories-post::-webkit-scrollbar-thumb {
+    background-color: var(--ghost-accent-color);
+}
+
+.categories-post::-webkit-scrollbar-thumb:hover {
+    background-color: var(--black);
+    cursor: pointer;
+}
+
+.categories-post::-webkit-scrollbar:hover {
+    cursor: grab;
+}
+
+.categories-post::-webkit-scrollbar:active,
+.categories-post::-webkit-scrollbar:focus {
+    cursor: grabbing;
+}
+
+.categories-post span.catGoRight {
+    right: 2vmin;
+}
+
+.categories-post span.catGoLeft {
+    left: 2vmin;
+}
+
+.categories-post span:is(.catGoRight, .catGoLeft) {
+    position: absolute;
+    font-size: -webkit-xxx-large;
+    font-size: xxx-large;
+    font-weight: bolder;
+    color: var(--black);
+    z-index: 999;
+}
+
+.categories-post span:is(.catGoRight, .catGoLeft):hover {
+    color: var(--ghost-accent-color);
+    cursor: pointer;
+}
+
+/*.categories-post::after {
+    position: absolute;
+    right: 2.5rem;
+    content: ">";
+    font-size: -webkit-xxx-large;
+    font-size: xxx-large;
+    font-weight: bolder;
+}*/
 
 .category-item.magic {
     opacity: 1;
@@ -788,6 +865,8 @@ fieldset.flex.row > div {
 
     ul[role="menu"] {
         display: none;
+        opacity: 0;
+        background-color: transparent;
     }
 
     body:has(ul[role="menu"].toggled) {
@@ -796,16 +875,18 @@ fieldset.flex.row > div {
 
     ul[role="menu"].toggled {
         display: flex;
+        opacity: 1;
         flex-basis: unset;
         flex-wrap: wrap;
-        position: absolute;
+        position: fixed;
         inset: 0;
-        background-color: lightgrey;
+        background-color: aliceblue;
         padding: 2rem;
         width: 100vw;
         height: 100vh;
         z-index: 9999999;
         font-size: 1.5rem;
+        transition: opacity 5s 10ms ease-in-out;
     }
 
     fieldset.flex.row {
@@ -814,6 +895,28 @@ fieldset.flex.row > div {
 
     header button#menuToggle:is(:enabled, :active) {
         display: initial;
+        background-color: rgba(var(--ghost-accent-color), 0.08);
+    }
+
+    header button[data-ghost-search]:is(:enabled, :active) {
+        position: fixed;
+        right: 7rem;
+        z-index: 999999;
+        border: 0;
+        border-radius: 3rem;
+        width: 4rem;
+        height: 4rem;
+    }
+
+    header button#menuToggle:hover,
+    header button[data-ghost-search]:hover {
+        background-color: lightblue;
+    }
+
+    header button#menuToggle:active,
+    header button[data-ghost-search]:active {
+        background-color: var(--yellow);
+        outline: thick dotted var(--black);
     }
 
     .footer-post input:is([type="text"], [type="email"]) {
