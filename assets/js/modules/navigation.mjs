@@ -1,5 +1,7 @@
 "use strict";
 
+import { explainError } from "help";
+
 const getHistory = (event) => {
     try {
         const numberOfEntries = history.length;
@@ -16,7 +18,7 @@ const getHistory = (event) => {
           
 
     } catch (error) {
-        console.log(error);
+        explainError(error);
     }
     /*
     history.back();
@@ -37,39 +39,45 @@ const getHistory = (event) => {
 };
 
 const doFakePages = () => {
-    window.onpopstate = (event) => setTimeout(getHistory(event), 0);
+    try {
+        window.onpopstate = (event) => setTimeout(getHistory(event), 0);
+    } catch (error) {
+        explainError(error);
+    }
 };
 
 const getNetworkInfo = () => {
     try {
         let type = navigator.connection.effectiveType;
-        
         const updateConnectionStatus = () => {
             console.log(`Connection type changed from ${type} to ${navigator.connection.effectiveType}`);
             type = navigator.connection.effectiveType;
         };
-        
         navigator.connection.addEventListener("change", updateConnectionStatus);
     } catch (error) {
-        console.log(error);
+        explainError(error);
     }
 };
 
-const goTop = () => {
-    // Get the button:
-    let mybutton = document.getElementById("goTopBtn");
-    
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {scrollFunction()};
+const topFunction = () => {
+    try {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    } catch (error) {
+        explainError(error);
+    }
+};
 
-    function scrollFunction() {
+const scrollFunction = () => {
+    try {
+        // Get the button:
+        const mybutton = document.getElementById("goTopBtn");
         if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
             mybutton.style.display = "block";
             setTimeout(() => {
                 mybutton.style.opacity = "1";
                 mybutton.style.transition = "opacity 1s .1s ease";
             }, 100);
-            
         } else {
             mybutton.style.opacity = "0";
             mybutton.style.transition = "opacity 1s .25s ease";
@@ -77,42 +85,54 @@ const goTop = () => {
                 mybutton.style.display = "none";
             }, 100);
         }
+        // When the user clicks on the button, scroll to the top of the document
+        mybutton.onclick = topFunction;
+    } catch (error) {
+        explainError(error);
     }
-    
-    // When the user clicks on the button, scroll to the top of the document
-    function topFunction() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
+};
 
-    mybutton.onclick = topFunction;
+const goTop = () => {
+    try {
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = scrollFunction;
+    } catch (error) {
+        explainError(error);
+    }
 }
 
-
 const reveal = (querySelector) => {
-    const elements = document.querySelectorAll(querySelector);
-    elements.forEach((element, index) => {
-        const winHeight = window.innerHeight,
-            elementTop = element.getBoundingClientRect().top,
-            breakpoint = 140;
+    try {
+        const elements = document.querySelectorAll(querySelector);
+        elements.forEach((element, index) => {
+            const winHeight = window.innerHeight,
+                elementTop = element.getBoundingClientRect().top,
+                breakpoint = 140;
 
-        let equation = elementTop < winHeight - breakpoint;
-        (equation) ? element.classList.add("magic") : element.classList.remove("magic");
-    });
+            let equation = elementTop < winHeight - breakpoint;
+            (equation) ? element.classList.add("magic") : element.classList.remove("magic");
+        });
+    } catch (error) {
+        explainError(error);
+    }
 };
 
 const toggled = (trigger, target) => {
-    const button = document.querySelector(trigger), menu = document.querySelector(target);
-    button.addEventListener("click", () => {
-        //menu.classList.toggle("toggled");
-        if (menu.classList.contains("toggled")) {
-            menu.classList.remove("toggled");
-            button.style.rotate = "none";
-        } else {
-            menu.classList.add("toggled");
-            button.style.rotate = "90deg";
-        }
-    });
+    try {
+        const button = document.querySelector(trigger), menu = document.querySelector(target);
+        button.addEventListener("click", () => {
+            //menu.classList.toggle("toggled");
+            if (menu.classList.contains("toggled")) {
+                menu.classList.remove("toggled");
+                button.style.rotate = "none";
+            } else {
+                menu.classList.add("toggled");
+                button.style.rotate = "90deg";
+            }
+        });
+    } catch (error) {
+        explainError(error);
+    }
 };
 
 export {
