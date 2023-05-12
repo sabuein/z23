@@ -31,7 +31,8 @@
         <h1 role="heading" aria-level="1"><a href="{{@site.url}}" title="{{@site.title}}">{{@site.title}}</a></h1>
         <h2>{{@site.description}}</h2>
         {{/if}}
-        <nav>{{navigation}}</nav>
+        <nav class="flex row">{{navigation}}</nav>
+        <button type="button" id="menuToggle">&#x2630;</button>
     </header>
     <noscript>
         <p class="flex" style="padding: 2rem; width: 100%;">This web application requires JavaScript</p>
