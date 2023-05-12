@@ -805,6 +805,7 @@ fieldset.flex.row > div {
         width: 100vw;
         height: 100vh;
         z-index: 9999999;
+        font-size: 1.5rem;
     }
 
     fieldset.flex.row {
