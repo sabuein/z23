@@ -42,6 +42,7 @@
     "scripts": {
         "start": "ghost start --dir ../../instances/ghost-en/",
         "restart": "ghost restart --dir ../../instances/ghost-en/",
-        "test": "gscan ."
+        "test": "gscan .",
+        "zip": "zip -r images.zip images"
     }
 }
