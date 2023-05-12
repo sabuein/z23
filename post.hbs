@@ -1,12 +1,67 @@
 {{!< default}}
 <!-- post.hbs -->
 {{#post}}
-<progress id="reading-progress" value="65" max="100" aria-label="Reading progress"></progress>
+<progress class="reading-bar" value="0" max="100" aria-label="Reading progress"></progress>
 <article class="{{post_class}}">
     <header>
-        <h2>{{title}}</h2>
+        <h2>{{#link href=(url) activeClass="current"}}{{title}}{{/link}}</h2>
+        <div>
+            <time datetime="{{date format="YYYY-MM-DD"}}">{{date published_at timeago="true"}}</time>
+            <p>{{excerpt words="26"}}{{!-- strips all HTML --}}</p>
+            <p>{{excerpt characters="140"}}{{!-- strips all HTML --}}</p>
+            <p>{{custom_excerpt}}{{!-- strips all HTML --}}</p>
+        </div>
+        {{#foreach authors}}
+        <div class="{{post_class}}-author">
+            <a href="{{url}}" title="{{name}}" class="author author-{{id}} {{slug}}">{{name}}</a>
+            {{#if profile_image}}
+            <img src="{{img_url profile_image absolute='true'}}" title="{{name}}" alt="{{bio}}" />
+            {{/if}}
+            {{#if facebook}}<a href="{{facebook_url}}">Follow on Facebook</a>{{/if}}
+            {{#if twitter}}<a href="{{twitter_url}}">Follow on Twitter</a>{{/if}}
+            {{#if website}}<a href="{{website_url}}">Visit website</a>{{/if}}
+            {{#if location}}<span>{{location}}</span>{{/if}}
+        </div>
+        {{/foreach}}
+        <div>{{authors separator=" &hellip; " prefix="More about:" visibility="all"}}</div>
+        {{#if featured}}
+        <p>Featured post</p>
+        {{/if}}
+        <div>
+            {{tags separator=" &bull; " prefix="Tagged in:" autolink="false" from="1" limit="4" visibility="public"}}{{!-- visibility = [all, public, internal] --}}
+        </div>
+        {{#if tags}}
+        <ul>
+            {{#foreach tags}}
+            <li><a href="{{url}}" title="{{name}}" class="tag tag-{{id}} {{slug}}">{{name}}</a></li>
+            <figure style="background-color: {{accent_color}};">
+                <img src="{{img_url feature_image absolute='true'}}" alt="{{description}}" class="img tag-{{id}} {{slug}}" />
+                <figcaption>Accent color&colon; {{accent_color}}</figcaption>
+            </figure>
+            {{/foreach}}
+        </ul>
+        {{/if}}
+        {{#primary_tag}}
+        {{#tags.[1]}}
+        <div class="primary-tag">
+            <a href="{{url}}">{{name}}</a>
+            <span class="description">{{description}}</span>
+        </div>
+        {{/tags.[1]}}
+        {{/primary_tag}}
+        <p>{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</p>
     </header>
     <div>{{content}}</div>
+    <footer>
+        <div><time>{{date published_at format="MMMM DD, YYYY"}}</time></div>
+        <div><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMMM YYYY"}}</time></div>
+    </footer>
 </article>
+<section>
+    {{#if comments}}
+    <p>Number of comments&colon; {{comment_count}}&period;</p>
+    <ul class="flex">{{comments title="Join the club" empty="There are no comments" count=false mode="light" saturation=80 singular="comment" plural="comments" autowrap="li" class="postComments"}}</ul>
+    {{/if}}
+</section>
 <aside class="flex">{{> "sharing"}}</aside>
 {{/post}}

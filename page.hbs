@@ -1,19 +1,23 @@
 {{!< default}}
 <!-- page.hbs -->
 {{#post}}
+<progress class="reading-bar" value="0" max="100" aria-label="Reading progress"></progress>
 <article class="{{post_class}}">
     <header>
         <h2>{{title}}</h2>
     </header>
+    {{#if feature_image}}
     <figure>
-        <img src="{{feature_image}}" />
+        <img src="{{img_url feature_image absolute='true'}}" />
         <figcaption>{{caption}}Lorem ipsum dolor sit amet, consectetur adipisicing elit&period;</figcaption>
     </figure>
+    {{/if}}
     <div class="flex start-items gap-x1">{{content}}</div>
     <footer class="footer-{{post_class}} flex">
         <aside class="flex">{{> "sharing"}}</aside>
         <div>{{> "subscribe"}}</div>
-        <button id="goTopBtn">Scroll Up</button>
+        <button id="goTopBtn">&#x1f53a;</button>
+        <button id="goFooterBtn">&#x1f53b;</button>
     </footer>
 </article>
 {{/post}}
