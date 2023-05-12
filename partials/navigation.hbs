@@ -16,7 +16,7 @@
 <ul class="flex row gap-x1" role="menu">
     {{#foreach navigation}}
     <li class="{{link_class for=(url) class=(concat "nav-" slug)}}" role="menuitem">
-        <a href="{{url absolute="true"}}">{{label}}</a>
+        {{#link href=(url absolute="true") activeClass="current"}}{{label}}{{/link}}
     </li>
     {{/foreach}}
 </ul>

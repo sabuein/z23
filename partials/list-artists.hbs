@@ -20,7 +20,7 @@
 </article>
 {{/get}}
 {{else}}
-{{#get "posts" include="tags,authors" filter="primary_tag:{{section}}" limit="all" as |post|}}
+{{#get "posts" include="tags,authors" filter="primary_tag:{{section}}" limit=@config.posts_per_page as |post|}}
 <article class="category-content flex">
     <div class="content-container flex row wrap start start-items gap-x2-5">
         {{#foreach post}}
