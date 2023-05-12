@@ -3,7 +3,10 @@
     <section class="flex row start start-items gap-x3">{{> "our-locations"}}</section>
     <section class="flex row end">{{> "our-social-media"}}</section>
     <section>
+        <pre>We have {{total_members}} member(s)&period; Join us today&excl;</pre>
         <pre>&copy; Copyright {{date format="YYYY"}}&period; All rights reserved&period;</pre>
-        <pre>Brought to you with <span class="red" title="love">&#x1f5a4;</span> by <a href="{{@site.url}}" title="{{@site.title}}">{{@site.title}}</a> &amp; {{total_members}} people from around the world&period;</pre>
+        <pre>Brought to you with <span class="red" title="love">&#x1f5a4;</span> from <a href="{{@site.url}}" title="{{@site.title}}">{{@site.title}}</a>&period;</pre>
     </section>
+    <button id="goTopBtn">&#x1f53a;</button>
+    <button id="goFooterBtn">&#x1f53b;</button>
 </footer>

@@ -11,8 +11,10 @@
     <script type="importmap">
         {
             "imports": {
-                "nav": "{{asset "js/modules/navigation.mjs"}}"
-                }
+                "nav": "{{asset "js/modules/navigation.mjs"}}",
+                "help": "{{asset "js/modules/helpers.mjs"}}"
+
+            }
         }
     </script>
     <script type="module" src="{{asset "js/index.mjs"}}"></script>
@@ -44,17 +46,20 @@
     <script type="text/javascript" language="JavaScript">
         //<!-- <![CDATA[
         const progressBar = document.querySelector(".reading-bar");
-        
-        function updateProgress() {
-            const totalHeight = document.body.clientHeight;
-            const windowHeight = document.documentElement.clientHeight;
-            const position = window.scrollY;
-            const progress = position / (totalHeight - windowHeight) * 100;
-            progressBar.setAttribute("value", progress);
-            requestAnimationFrame(updateProgress);
+        if (progressBar) requestAnimationFrame(updateProgress);
+        function updateProgress () {
+            try {
+                const totalHeight = document.body.clientHeight;
+                const windowHeight = document.documentElement.clientHeight;
+                const position = window.scrollY;
+                const progress = position / (totalHeight - windowHeight) * 100;
+                progressBar.setAttribute("value", progress);
+                requestAnimationFrame(updateProgress);
+            } catch (error) {
+                console.log(error);
+            }
         }
         
-        requestAnimationFrame(updateProgress);
         //]]> -->
     </script>
     
