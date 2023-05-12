@@ -104,7 +104,14 @@ const reveal = (querySelector) => {
 const toggled = (trigger, target) => {
     const button = document.querySelector(trigger), menu = document.querySelector(target);
     button.addEventListener("click", () => {
-        menu.classList.toggle("toggled");
+        //menu.classList.toggle("toggled");
+        if (menu.classList.contains("toggled")) {
+            menu.classList.remove("toggled");
+            button.style.rotate = "none";
+        } else {
+            menu.classList.add("toggled");
+            button.style.rotate = "90deg";
+        }
     });
 };
 
