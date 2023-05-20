@@ -1,11 +1,17 @@
-import { doFakePages, getNetworkInfo, goTop, reveal, toggled } from "nav";
+import { doFakePages, getNetworkInfo, reveal, toggled } from "nav";
 
 document.addEventListener("DOMContentLoaded", (event) => {
     doFakePages();
     getNetworkInfo();
-    goTop();
     toggled("button#menuToggle", 'ul[role="menu"]');
+    //registerPrevious(document.activeElement);
     window.addEventListener("scroll", () => reveal(".category-item"));
+    /*let all = document.querySelectorAll("body *");
+    all.forEach(ele => {
+        ele.addEventListener("blur", (event) => {
+            console.log(event.target);
+        });
+    });*/
 });
 
 /*
