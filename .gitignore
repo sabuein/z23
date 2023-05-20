@@ -1,8 +1,12 @@
 # Basic
 *.pem
 *.txt
+*.zip
+**/*.json
 assets/backups/
-assets/images/
+assets/images/2***/
+assets/files/
+
 
 # Logs
 logs
