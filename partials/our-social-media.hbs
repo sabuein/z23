@@ -1,7 +1,7 @@
 <!-- our-social-media.hbs -->
 <div class="flex row-x gap-x2">
     <figure class="social-icon">
-        <a href= "https://www.artsy.net/partner/zawyeh-gallery" title="Artsy" target="_blank">{{> "icons/artsy"}}</a>
+        <a href= "https://www.artsy.net/partner/zawyeh-gallery/" title="Artsy" target="_blank">{{> "icons/artsy"}}</a>
     </figure>
     {{#if @site.facebook}}
     <figure class="social-icon">
@@ -10,7 +10,7 @@
     {{/if}}
     {{#if @site.twitter}}
     <figure class="social-icon">
-        <a href= "{{twitter_url @site.twitter}}" title="Twitter" target="_blank">{{> "icons/twitter"}}</a>
+        <a href= "{{twitter_url @site.twitter}}" title="Twitter" target="_blank" class="twitter-follow-button" data-show-count="false">{{> "icons/twitter"}}</a><!--script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script-->
     </figure>
     {{/if}}
     <figure class="social-icon">

@@ -13,9 +13,9 @@
     {{/foreach}}
 </ul>
 {{else}}
-<ul class="flex row gap-x1" role="menu">
+<ul class="flex row gap-x1" role="menu" tabindex="0">
     {{#foreach navigation}}
-    <li class="{{link_class for=(url) class=(concat "nav-" slug)}}" role="menuitem">
+    <li class="{{link_class for=(url) class=(concat "nav-" slug)}}" role="menuitem" autofocus>
         {{#link href=(url absolute="true") activeClass="current"}}{{label}}{{/link}}
     </li>
     {{/foreach}}

@@ -1,10 +1,12 @@
 <!-- pagination.hbs -->
-<nav class="pagination">
-    {{#if prev}}
-    <a class="newer-posts" href="{{page_url prev}}"><span aria-hidden="true">&larr;</span> Newer Posts</a>
-    {{/if}}
-    <span class="page-number">Page {{page}} of {{pages}}</span>
-    {{#if next}}
-    <a class="older-posts" href="{{page_url next}}">Older Posts <span aria-hidden="true">&rarr;</span></a>
-    {{/if}}
+<nav class="pagination flex row gap-x2">
+    {{#post}}
+    {{#prev_post}}
+    <a href="{{url aboslute='true'}}" title="{{title}}">&LeftArrow;</a>
+    {{/prev_post}}
+    <span>Page {{page}} of {{pages}}</span>
+    {{#next_post}}
+    <a href="{{url aboslute='true'}}" title="{{title}}">&RightArrow;</a>
+    {{/next_post}}
+    {{/post}}
 </nav>
