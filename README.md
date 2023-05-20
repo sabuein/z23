@@ -17,3 +17,7 @@ Checking theme compatibility...
 Get more help at https://ghost.org/docs/themes/
 You can also check theme compatibility at https://gscan.ghost.org/
 ```
+
+## Resources
+
+- Ghost Admin API Documentation https://ghost.org/docs/admin-api/
